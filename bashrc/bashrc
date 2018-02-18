@@ -1,0 +1,92 @@
+# DW3 bashrc config
+# --------------------------
+# GNU GENERAL PUBLIC LICENSE
+# Version 3, 29 June 2007
+# --------------------------
+
+alias ls="ls --color"
+alias diff='diff --color=auto'
+alias grep='grep --color=auto'
+
+man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
+
+
+if [ -f /etc/bash_completion ]; then
+	    . /etc/bash_completion
+fi
+
+xhost +local:root > /dev/null 2>&1
+
+complete -cf sudo
+
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s cmdhist
+shopt -s dotglob
+shopt -s expand_aliases
+shopt -s extglob
+shopt -s histappend
+shopt -s hostcomplete
+shopt -s nocaseglob
+
+#exports
+export HISTSIZE=10000
+export HISTFILESIZE=${HISTSIZE}
+export HISTCONTROL=ignoreboth
+
+# Prompt
+if [ -n "$SSH_CONNECTION" ]; then
+# Style
+# ┌─╼ user.host [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ \u.\h \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+#
+# ┌─╼ user@host [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ \u@\h \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+#
+# ┌─╼ user | host [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ \u |\h \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+#
+# ┌─╼ (user) [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ (\u) \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+# Use \w instead of \W to show full path
+#
+# ┌─╼ [path]
+export PS1="\[$(tput setaf 1)\]┌─╼ \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+else
+# Uncomment the same
+# ┌─╼ user.host [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ \u.\h \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+#
+# ┌─╼ user@host [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ \u@\h \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+#
+# ┌─╼ user | host [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ \u |\h \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+#
+# ┌─╼ (user) [path]
+# export PS1="\[$(tput setaf 1)\]┌─╼ (\u) \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼ \[$(tput setaf 7)\][ssh]\"; else echo \"\[$(tput setaf 1)\]└╼ \[$(tput setaf 7)\][ssh]\"; fi) \[$(tput setaf 7)\]"
+# Use \w instead of \W to show full path
+#
+# ┌─╼ [path]
+export PS1="\[$(tput setaf 1)\]┌─╼ \[$(tput setaf 7)\][\W]\n\[$(tput setaf 1)\]\$(if [[ \$? == 0 ]]; then echo \"\[$(tput setaf 1)\]└────╼\"; else echo \"\[$(tput setaf 1)\]└╼\"; fi) \[$(tput setaf 7)\]"
+fi
+
+trap 'echo -ne "\e[0m"' DEBUG
+
+# I this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
