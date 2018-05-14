@@ -1,0 +1,39 @@
+[global_config]
+  title_font = Monospace 12
+  title_transmit_bg_color = "#007ac8"
+  title_use_system_font = False
+[keybindings]
+  close_term = <Primary>d
+  next_tab = <Primary>o
+  split_horiz = <Primary>h
+  split_vert = <Primary>v
+  switch_to_tab_1 = <Ctrl>1
+  switch_to_tab_2 = <Ctrl>2
+  switch_to_tab_3 = <Ctrl>3
+  switch_to_tab_4 = <Ctrl>4
+  switch_to_tab_5 = <Ctrl>5
+  switch_to_tab_6 = <Ctrl>6
+  switch_to_tab_7 = <Ctrl>7
+  switch_to_tab_8 = <Ctrl>8
+  switch_to_tab_9 = <Ctrl>9
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.85
+    background_type = transparent
+    cursor_color = "#000000"
+    font = Monospace 12
+    foreground_color = "#eeeeec"
+    icon_bell = False
+    palette = "#282828:#007ac8:#4e9a06:#d79921:#204a87:#5c3566:#03a2a3:#eeeeec:#555753:#ff6767:#8ae234:#fabd2f:#729fcf:#ad7fa8:#6cfff4:#ffffff"
+    scrollbar_position = hidden
+    use_system_font = False
